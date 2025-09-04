@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# API key gốc (lưu trong biến môi trường, không hardcode!)
+# Key lấy từ biến môi trường
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 SYSTEM_PROMPT = """
@@ -38,5 +38,7 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Railway cần app chạy port từ biến môi trường PORT
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
