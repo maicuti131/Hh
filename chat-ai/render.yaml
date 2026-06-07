@@ -2,7 +2,6 @@ services:
   - type: web
     name: chat-ai
     runtime: node
-    plan: free
-    rootDir: server
+    rootDir: chat-ai/server
     buildCommand: npm install
     startCommand: npm start
